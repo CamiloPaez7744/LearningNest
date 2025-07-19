@@ -1,5 +1,6 @@
 import './style.css'
 import { name, age } from './bases/01-types.ts'
+import { Pokemon, pokemonList } from './bases/03-classes.ts'
 import typescriptLogo from './typescript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.ts'
@@ -8,6 +9,11 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
     <a href="https://vite.dev" target="_blank">
       <img src="${viteLogo}" class="logo" alt="Vite logo" />
+
+      <p>Pokemon List:</p>
+      <ul>
+        ${pokemonList.map(pokemon => `<li>${pokemon.name}</li>`).join('')}
+      </ul>
     </a>
     <h1>${name}</h1>
     <p>Age: ${age}</p>
