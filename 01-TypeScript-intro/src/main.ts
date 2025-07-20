@@ -1,6 +1,7 @@
 import './style.css'
 import { name, age } from './bases/01-types.ts'
 import { Pokemon, pokemonList } from './bases/03-classes.ts'
+// import { Pokemon } from './bases/05-decorators.ts'
 import typescriptLogo from './typescript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.ts'
