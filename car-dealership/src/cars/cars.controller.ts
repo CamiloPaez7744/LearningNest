@@ -1,5 +1,15 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseUUIDPipe,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { CarsService } from './cars.service';
+import { CreateCarDto } from './dto/create-car.dto';
 
 @Controller('cars')
 export class CarsController {
@@ -11,28 +21,25 @@ export class CarsController {
   }
 
   @Get('/:id')
-  getCarById(@Param('id', ParseIntPipe) id: number) {
+  getCarById(@Param('id', ParseUUIDPipe) id: string) {
     return this.carsService.getCarById(id);
   }
 
   @Post()
-  createCar(@Body() body: any) {
-    // This method would handle car creation logic
-    // For now, we can return a placeholder response
-    return body;
+  createCar(@Body() createCarDto: CreateCarDto) {
+    return this.carsService.create(createCarDto);
   }
 
   @Patch('/:id')
-  updateCar(@Param('id', ParseIntPipe) id: number, @Body() body: any) {
-    // This method would handle car update logic
-    // For now, we can return a placeholder response
-    return body;
+  updateCar(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() body: Partial<CreateCarDto>,
+  ) {
+    return this.carsService.update(id, body);
   }
 
   @Delete('/:id')
-  deleteCar(@Param('id', ParseIntPipe) id: number) {
-    // This method would handle car deletion logic
-    // For now, we can return a placeholder response
-    return { message: 'Car deletion logic not implemented yet', id };
+  deleteCar(@Param('id', ParseUUIDPipe) id: string) {
+    return this.carsService.delete(id);
   }
 }
