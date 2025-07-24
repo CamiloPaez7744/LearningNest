@@ -64,4 +64,8 @@ export class CarsService {
     }
     this.cars.splice(index, 1);
   }
+
+  fillWithSeedData(carsSeed: Car[]) {
+    this.cars.push(...carsSeed);
+  }
 }
