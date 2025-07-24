@@ -4,7 +4,7 @@ import { Type } from 'class-transformer';
 
 export class CreateCarDto {
   @IsString()
-  @MinLength(2)
+  @MinLength(4)
   readonly brand: string;
 
   @IsString()
