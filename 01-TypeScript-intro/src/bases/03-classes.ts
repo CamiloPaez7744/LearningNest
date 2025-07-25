@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { PokeapiResponse } from "../interfaces/pokeapi-response.interface";
+import { PokeapiResponse } from "../interfaces/pokeapi-response.interface";
 
 // type class form of the Pokemon data structure
 export class Pokemon {
