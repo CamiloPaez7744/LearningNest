@@ -28,6 +28,8 @@ $ npm i -g @nestjs/cli
 $ docker-compose up -d
 ```
 
+6. Populate the database by visiting [http://localhost:3000/api/seed](http://localhost:3000/api/seed) in your browser or using a tool like `curl` or Postman.
+
 ## Stack
 
 - **NestJS**: Progressive Node.js framework for building efficient server-side applications.
