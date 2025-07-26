@@ -27,8 +27,14 @@ $ npm i -g @nestjs/cli
 ```bash
 $ docker-compose up -d
 ```
+6. Copy the __`.env.template`__ file, rename it to __`.env`__, and update its values with your personal configuration settings.
 
-6. Populate the database by visiting [http://localhost:3000/api/seed](http://localhost:3000/api/seed) in your browser or using a tool like `curl` or Postman.
+7. Start the application with the command:
+```
+$ yarn start:dev
+```
+   
+8. Populate the database by visiting [http://localhost:3000/api/seed](http://localhost:3000/api/seed) in your browser or using a tool like `curl` or Postman.
 
 ## Stack
 
