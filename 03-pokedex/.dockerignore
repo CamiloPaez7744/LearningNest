@@ -1,0 +1,15 @@
+dist/
+node_modules/
+.gitignore
+.git/
+
+
+src/**/*.spec.ts
+src/**/*.test.ts
+src/**/*.e2e-spec.ts
+src/**/*.spec.js
+src/**/*.test.js
+src/**/*.e2e-spec.js
+src/**/*.d.ts
+src/**/*.js.map
+src/**/*.ts.map

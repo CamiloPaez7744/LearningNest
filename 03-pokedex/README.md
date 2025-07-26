@@ -36,6 +36,15 @@ $ yarn start:dev
    
 8. Populate the database by visiting [http://localhost:3000/api/seed](http://localhost:3000/api/seed) in your browser or using a tool like `curl` or Postman.
 
+## Build Production
+
+1. Create a file named __`.env.prod`__ and configure it with your values.
+2. Build and start the Docker image using the following command:
+  ```bash
+  $ docker-compose -f docker-compose.prod.yaml --env-file .env.prod up --build
+  ```
+```
+
 ## Stack
 
 - **NestJS**: Progressive Node.js framework for building efficient server-side applications.
