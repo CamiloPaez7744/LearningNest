@@ -40,11 +40,17 @@ export class ProductsService {
   }
 
   async findOne(id: string) {
-    let product: Product;
+    let product: Product | null = null;
     if (isUUID(id)) {
       product = await this.productRepository.findOneBy({ id });
     } else {
-      product = await this.productRepository.findOneBy({ slug: id });
+      const queryBuilder = this.productRepository.createQueryBuilder();
+      product = await queryBuilder
+        .where('UPPER(title) = :title OR slug = :slug', {
+          title: id.toUpperCase(),
+          slug: id.toLowerCase(),
+        })
+        .getOne();
     }
     if (!product)
       throw new NotFoundException(`Product with id "${id}" not found`);
@@ -52,8 +58,19 @@ export class ProductsService {
   }
 
   async update(id: string, updateProductDto: UpdateProductDto) {
-    await this.productRepository.update(id, updateProductDto);
-    return this.productRepository.findOneBy({ id });
+    const product = await this.productRepository.preload({
+      id,
+      ...updateProductDto,
+    });
+
+    if (!product)
+      throw new NotFoundException(`Product with id "${id}" not found`);
+    try {
+      await this.productRepository.save(product);
+      return product;
+    } catch (error) {
+      this.handleDBExceptions(error);
+    }
   }
 
   async remove(id: string) {
