@@ -47,4 +47,9 @@ export class CreateProductDto {
   @IsArray()
   @MinLength(1, { each: true })
   tags: string[];
+
+  @IsString({ each: true })
+  @IsArray()
+  @MinLength(1, { each: true })
+  images?: string[];
 }

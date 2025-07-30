@@ -41,7 +41,7 @@ export class Product {
     cascade: true,
     eager: true,
   })
-  images?: ProductImage;
+  images?: ProductImage[];
 
   @BeforeInsert()
   checkSlug() {
