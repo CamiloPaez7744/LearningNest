@@ -32,7 +32,7 @@ export class Product {
   sizes: string[];
 
   @Column('text')
-  gender: string[];
+  gender: string;
 
   @Column('text', { array: true, default: [] })
   tags: string[];
