@@ -6,7 +6,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const logger = new Logger('Bootstrap');
   app.setGlobalPrefix('api');
-  app.use
+  app.use;
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
