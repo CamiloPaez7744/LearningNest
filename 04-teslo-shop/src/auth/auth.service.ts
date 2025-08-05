@@ -32,7 +32,7 @@ export class AuthService {
       return {
         ...user,
         password: undefined,
-        token: this.getJwtToken({ email: user.email }),
+        token: this.getJwtToken({ id: user.id }),
       };
     } catch (error) {
       this.handleDBExceptions(error);
@@ -43,7 +43,7 @@ export class AuthService {
     const { email, password } = loginUserDto;
     const user = await this.userRepository.findOne({
       where: { email },
-      select: { email: true, password: true },
+      select: { email: true, password: true, id: true },
     });
     if (!user || !bcrypt.compareSync(password, user.password)) {
       throw new UnauthorizedException('Invalid credentials');
@@ -51,7 +51,7 @@ export class AuthService {
     return {
       ...user,
       password: undefined,
-      token: this.getJwtToken({ email: user.email }),
+      token: this.getJwtToken({ id: user.id }),
     };
   }
 
