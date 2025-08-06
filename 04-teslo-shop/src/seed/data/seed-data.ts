@@ -17,8 +17,8 @@ type ValidTypes = 'shirts' | 'pants' | 'hoodies' | 'hats';
 interface SeedUser {
   email: string;
   password: string;
-  name: string;
-  role: 'admin' | 'user' | 'super-user' | 'SEO';
+  fullName: string;
+  roles: ('admin' | 'user' | 'super-user' | 'SEO')[];
 }
 
 interface SeedData {
@@ -31,14 +31,14 @@ export const initialData: SeedData = {
     {
       email: 'admin@teslo.com',
       password: 'admin',
-      name: 'Admin User',
-      role: 'admin',
+      fullName: 'Admin User',
+      roles: ['admin'],
     },
     {
       email: 'user@teslo.com',
       password: 'user',
-      name: 'Regular User',
-      role: 'user',
+      fullName: 'Regular User',
+      roles: ['user'],
     },
   ],
   products: [
