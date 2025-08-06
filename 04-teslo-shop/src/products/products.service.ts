@@ -10,6 +10,7 @@ import { DataSource, Repository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
+import { User } from 'src/auth/entities/user.entity';
 import { validate as isUUID } from 'uuid';
 import { Product, ProductImage } from './entities';
 
@@ -23,7 +24,7 @@ export class ProductsService {
     private readonly productImageRepository: Repository<ProductImage>,
     private readonly dataSource: DataSource,
   ) {}
-  async create(createProductDto: CreateProductDto) {
+  async create(createProductDto: CreateProductDto, user: User) {
     try {
       const { images = [], ...productData } = createProductDto;
       const product = this.productRepository.create({
@@ -31,6 +32,7 @@ export class ProductsService {
         images: images.map((image) =>
           this.productImageRepository.create({ url: image }),
         ),
+        user,
       });
       await this.productRepository.save(product);
       return { ...product, images };
@@ -79,11 +81,12 @@ export class ProductsService {
     };
   }
 
-  async update(id: string, updateProductDto: UpdateProductDto) {
+  async update(id: string, updateProductDto: UpdateProductDto, user: User) {
     const { images, ...updateData } = updateProductDto;
     const product = await this.productRepository.preload({
       id,
       ...updateData,
+      user,
     });
 
     if (!product)
